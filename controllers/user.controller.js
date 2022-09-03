@@ -21,7 +21,6 @@ module.exports.getRandomUser = (req, res) => {
 module.exports.getAllUser = (req, res) => {
     const { limit } = req.query;
     res.send(users.slice(0, limit));
-
 };
 
 module.exports.saveAUser = (req, res) => {
@@ -40,7 +39,7 @@ module.exports.saveAUser = (req, res) => {
 
 module.exports.updateSingleUser = (req, res) => {
     const { id } = req.params;
-    let newData = users.find(tool => tool.id === Number(id));
+    let newData = users.find(user => user.id === Number(id));
 
     if (newData === undefined) {
         res.send('User not found');
@@ -65,12 +64,17 @@ module.exports.updateSingleUser = (req, res) => {
 
 module.exports.deleteUser = (req, res) => {
     const { id } = req.params;
-    users = users.filter(tool => tool.id !== Number(id));
-    res.send(users);
-    fs.writeFile('users.json', JSON.stringify(users), (err) => {
-        if (err) {
-            res.send('Failed to delete data');
-        }
-    });
+    let isAvailable = users.find(user => user.id === Number(id));
 
+    if (isAvailable === undefined) {
+        res.send('User not found');
+    } else {
+        users = users.filter(user => user.id !== Number(id));
+        res.send(users);
+        fs.writeFile('users.json', JSON.stringify(users), (err) => {
+            if (err) {
+                res.send('Failed to delete data');
+            }
+        });
+    }
 };
