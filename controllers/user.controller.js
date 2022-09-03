@@ -26,12 +26,16 @@ module.exports.getAllUser = (req, res) => {
 
 module.exports.saveAUser = (req, res) => {
     users.push(req.body);
-    res.send(users);
-    fs.writeFile('users.json', JSON.stringify(users), (err) => {
-        if (err) {
-            res.send('failed to save data');
-        }
-    });
+    if (!req.body?.id || !req.body?.name || !req.body?.contact || !req.body?.address || !req.body?.photoUrl) {
+        res.send('failed to save data');
+    } else {
+        res.send(users);
+        fs.writeFile('users.json', JSON.stringify(users), (err) => {
+            if (err) {
+                res.send('failed to save data');
+            }
+        });
+    }
 };
 
 module.exports.updateSingleUser = (req, res) => {
