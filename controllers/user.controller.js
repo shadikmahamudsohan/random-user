@@ -26,7 +26,7 @@ module.exports.getAllUser = (req, res) => {
 module.exports.saveAUser = (req, res) => {
     users.push(req.body);
     if (!req.body?.id || !req.body?.name || !req.body?.contact || !req.body?.address || !req.body?.photoUrl) {
-        res.send('failed to save data');
+        res.send('Please add all the properties');
     } else {
         res.send(users);
         fs.writeFile('users.json', JSON.stringify(users), (err) => {
