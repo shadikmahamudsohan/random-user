@@ -27,7 +27,7 @@ module.exports.getAllUser = (req, res) => {
 module.exports.saveAUser = (req, res) => {
     users.push(req.body);
     res.send(users);
-    fs.appendFile('users.json', JSON.stringify(users), (err) => {
+    fs.writeFile('users.json', JSON.stringify(users), (err) => {
         if (err) {
             res.send('failed to save data');
         }
