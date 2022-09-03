@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "gender": "male",
+        "name": "Shadik",
+        "contact": "01779099705",
+        "address": "Bangladesh, Barishal",
+        "photoUrl": "https://i.ibb.co/PCwP1Q1/user3.jpg"
+    },
+    {
+        "id": 2,
+        "gender": "male",
+        "name": "Sajid",
+        "contact": "01772329123",
+        "address": "Bangladesh, Daka",
+        "photoUrl": "https://i.ibb.co/fNhHPBS/user2.jpg"
+    },
+    {
+        "id": 3,
+        "gender": "male",
+        "name": "Jahin",
+        "contact": "01772312345",
+        "address": "Bangladesh, Kulna",
+        "photoUrl": "https://i.ibb.co/DbQbc0p/user1.jpg"
+    },
+    {
+        "id": 4,
+        "gender": "Female",
+        "name": "Fatima",
+        "contact": "01745672345",
+        "address": "Bangladesh, Ragsahi",
+        "photoUrl": "https://i.ibb.co/2NZx4Rg/user5.jpg"
+    }
+]

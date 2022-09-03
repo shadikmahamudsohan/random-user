@@ -1,9 +1,6 @@
-let users = [
-    { id: 1, name: "user1" },
-    { id: 2, name: "user2" },
-    { id: 3, name: "user3" },
-    { id: 4, name: "user4" },
-];
+const fs = require('fs');
+
+const users = JSON.parse(fs.readFileSync('users.json').toString());
 
 let randomNumber = 0;
 
@@ -23,7 +20,8 @@ module.exports.getRandomUser = (req, res) => {
 
 module.exports.getAllUser = (req, res) => {
     const { limit } = req.query;
-    res.json(users.slice(0, limit));
+    res.send(users.slice(0, limit));
+
 };
 
 module.exports.saveAUser = (req, res) => {
