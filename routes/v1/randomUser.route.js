@@ -9,6 +9,8 @@ router.get("/all", controllers.getAllUser);
 
 router.post("/save", controllers.saveAUser);
 
+router.patch("/bulk-update", controllers.bulkUpdate);
+
 router.patch("/update/:id", controllers.updateSingleUser);
 
 router.delete("/delete/:id", controllers.deleteUser);

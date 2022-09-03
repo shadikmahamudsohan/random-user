@@ -58,8 +58,43 @@ module.exports.updateSingleUser = (req, res) => {
             }
         });
     }
+};
+module.exports.bulkUpdate = (req, res) => {
+    const data = req.body;
+    let isDone = false;
+    let userFound = [];
+    let validatedData = [];
+    data.map(singleData => {
+        let newData = users.find(user => user.id === Number(singleData.id));
+        if (newData === undefined) {
+            isDone = false;
+            userFound.push(false);
+        } else {
+            newData.id = singleData.id;
+            newData.gender = singleData.gender;
+            newData.name = singleData.name;
+            newData.contact = singleData.contact;
+            newData.address = singleData.address;
+            newData.photoUrl = singleData.photoUrl;
+            if (Object.keys(singleData).length > 6) {
+                validatedData.push(false);
+            } else {
+                validatedData.push(true);
+            }
+            isDone = true;
+            userFound.push(true);
+        }
+    });
 
-
+    if (userFound?.includes(false) || !isDone) {
+        res.send('User not found');
+    }
+    else if (validatedData.includes(false)) {
+        res.send(`can't add new data`);
+    }
+    else {
+        res.send(users);
+    }
 };
 
 module.exports.deleteUser = (req, res) => {
