@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const users = JSON.parse(fs.readFileSync('users.json').toString());
+let users = JSON.parse(fs.readFileSync('users.json').toString());
 
 let randomNumber = 0;
 
@@ -41,4 +41,14 @@ module.exports.deleteUser = (req, res) => {
     const { id } = req.params;
     users = users.filter(tool => tool.id !== Number(id));
     res.send(users);
+    fs.writeFile('users.json', JSON.stringify(users), (err) => {
+        if (err) {
+            res.write('Data failed to write');
+            res.end();
+        } else {
+            res.write('data written successfully');
+            res.end();
+        }
+    });
+
 };
